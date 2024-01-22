@@ -1,9 +1,13 @@
+// Put the Link intro a variable
+const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
+
 function init() {
+
   // Use the dropdown selector
   var dropdownSelector = d3.select("#selDataset");
   
   // Put the Subject ID in the dropdown slector using an arrow function
-    d3.json("../../samples.json").then((data) => {
+    d3.json(url).then((data) => {
       var subjectId = data.names;
       subjectId.forEach((id) => {
         dropdownSelector
@@ -22,7 +26,7 @@ function init() {
 
 // Put the selected data into variables using arrow functions
 function updateMetadata(sample) {
-  d3.json("../../samples.json").then((data) => {
+  d3.json(url).then((data) => {
       var metadata = data.metadata;
       var filterOne = metadata.filter(sampleObject => sampleObject.id == sample);
       var results = filterOne[0];
@@ -74,7 +78,7 @@ function updateMetadata(sample) {
 
 // Updating the charts with the selected ID
 function updateCharts(sample) {    
-  d3.json("../../samples.json").then((data) => {
+  d3.json(url).then((data) => {
   var samples = data.samples;
   var filterArray = samples.filter(sampleObject => sampleObject.id == sample);
   var result = filterArray[0];
